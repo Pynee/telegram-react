@@ -1,0 +1,8 @@
+{
+  "appId": "app.gramion",
+  "appName": "GramIon",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "public",
+  "cordova": {}
+}

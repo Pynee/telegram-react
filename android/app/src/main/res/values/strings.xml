@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GramIon</string>
+    <string name="title_activity_main">GramIon</string>
+    <string name="package_name">app.gramion</string>
+    <string name="custom_url_scheme">app.gramion</string>
+</resources>

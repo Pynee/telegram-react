@@ -6,66 +6,66 @@
  */
 
 *:focus {
-    outline: none;
+  outline: none;
 }
 
 html {
-    background: #e7ebf0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+  background: #e7ebf0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    color: #000;
-    background: 0 0;
-    font: 15px/20px 'Roboto', sans-serif;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #000;
+  background: 0 0;
+  font: 15px/20px "Roboto", sans-serif;
+  overflow: hidden;
 }
 
 b,
 strong {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 mark {
-    background-color: #fff8cc;
-    border-radius: 3px;
-    padding: 0 3px;
+  background-color: #fff8cc;
+  border-radius: 3px;
+  padding: 0 3px;
 }
 
 #root {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 #app {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background: transparent;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
 }
 
 .page {
-    height: calc(100% - 23px);
-    max-width: 1010px;
-    min-width: 300px;
-    margin: 0 auto;
-    box-shadow: 0 1px 0 #dfe5ec;
-    border-left: 1px solid #dfe5ec;
-    border-right: 1px solid #dfe5ec;
-    border-bottom: 1px solid #d2dbe3;
-    overflow: hidden;
-    border-radius: 0 0 8px 8px;
+  height: calc(100% - 23px);
+  max-width: 1010px;
+  min-width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 1px 0 #dfe5ec;
+  border-left: 1px solid #dfe5ec;
+  border-right: 1px solid #dfe5ec;
+  border-bottom: 1px solid #d2dbe3;
+  overflow: hidden;
+  border-radius: 0 0 8px 8px;
 }
 
 .page-third-column {
-    max-width: 1440px;
+  max-width: 1440px;
 }
 
 .accent-color {
@@ -75,5 +75,11 @@ mark {
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .page {
+    height: 100vh;
+  }
 }
