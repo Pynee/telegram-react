@@ -1,8 +1,10 @@
-# Telegram Web App
+# Ionic Telegram Web and Android App
 
 ### Technical details
 
-The app is based on the ReactJS JavaScript framework and TDLib (Telegram Database library) compiled to WebAssembly. Try it [here](https://evgeny-nadymov.github.io/telegram-react/).
+This is fork of https://github.com/evgeny-nadymov/telegram-react repository
+
+and it is app is based on the ReactJS JavaScript framework and TDLib (Telegram Database library) compiled to WebAssembly. Try it [here](https://evgeny-nadymov.github.io/telegram-react/).
 
 ### Running locally
 Install [node.js](http://nodejs.org/).
@@ -10,7 +12,7 @@ Install [node.js](http://nodejs.org/).
 Install dependencies with:
 
 ```lang=bash
-npm install
+yarn install
 ```
 
 This will install all the needed dependencies.
@@ -20,14 +22,18 @@ All TDLib files will be installed into node_modules/tdweb/dist/ folder. Manually
 ```lang=bash
 cp node_modules/tdweb/dist/* public/
 ```
-
-Run the app in development mode with:
+Install Ionic helper with:
 
 ```lang=bash
-npm run start
+yarn -g Ionic
+```
+and then run the app in development mode with:
+
+```lang=bash
+Ionic serve
 ```
 
-Open http://localhost:3000 to view it in the browser.
+Open http://localhost:8100 to view it in the browser.
 
 ### Deploying to GitHub Pages
 
