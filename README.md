@@ -4,7 +4,7 @@
 
 This is fork of https://github.com/evgeny-nadymov/telegram-react repository
 
-and it is app is based on the ReactJS JavaScript framework and TDLib (Telegram Database library) compiled to WebAssembly. Try it [here](https://evgeny-nadymov.github.io/telegram-react/).
+and the orginal telegram-react is based on the ReactJS JavaScript framework and TDLib (Telegram Database library) compiled to WebAssembly. Try it [here](https://evgeny-nadymov.github.io/telegram-react/).
 
 ### Running locally
 Install [node.js](http://nodejs.org/).
