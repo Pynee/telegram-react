@@ -34,6 +34,8 @@ import TdLibController from './Controllers/TdLibController';
 import './TelegramApp.css';
 
 import MainPage from './Components/MainPage';
+import { Plugins } from '@capacitor/core';
+const { SplashScreen } = Plugins;
 // const MainPage = React.lazy(() => import('./Components/MainPage'));
 
 const styles = theme => ({
@@ -85,6 +87,7 @@ class TelegramApp extends Component {
         ApplicationStore.on('clientUpdateTdLibDatabaseExists', this.onClientUpdateTdLibDatabaseExists);
         ApplicationStore.on('updateAuthorizationState', this.onUpdateAuthorizationState);
         ApplicationStore.on('updateFatalError', this.onUpdateFatalError);
+        SplashScreen.hide();
     }
 
     componentWillUnmount() {
@@ -211,7 +214,6 @@ class TelegramApp extends Component {
         //         <MainPage />
         //     </React.Suspense>
         // );
-        
 
         if (inactive) {
             page = <InactivePage />;
@@ -250,15 +252,15 @@ class TelegramApp extends Component {
             }
         }
 
-        console.log(
-            'TelegramApp.render',
-            state,
-            prevAuthorizationState,
-            'nativeMobile=' + nativeMobile,
-            'inactive=' + inactive,
-            'tdlibDb=' + tdlibDatabaseExists,
-            page
-        );
+        // console.log(
+        //   "TelegramApp.render",
+        //   state,
+        //   prevAuthorizationState,
+        //   "nativeMobile=" + nativeMobile,
+        //   "inactive=" + inactive,
+        //   "tdlibDb=" + tdlibDatabaseExists,
+        //   page
+        // );
 
         return (
             <div id='app' onDragOver={this.handleDragOver} onDrop={this.handleDrop} onKeyDown={this.handleKeyDown}>
@@ -420,11 +422,6 @@ window.onpopstate = function() {
     window.history.go(1);
 };
 
-const enhance = compose(
-    withLanguage,
-    withTranslation(),
-    withTheme,
-    withStyles(styles)
-);
+const enhance = compose(withLanguage, withTranslation(), withTheme, withStyles(styles));
 
 export default enhance(TelegramApp);

@@ -1,8 +1,8 @@
 {
-  "appId": "app.gramion",
+  "appId": "io.ionic.starter",
   "appName": "GramIon",
   "bundledWebRuntime": false,
-  "npmClient": "yarn",
-  "webDir": "public",
+  "npmClient": "npm",
+  "webDir": "build",
   "cordova": {}
 }

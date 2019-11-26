@@ -5,144 +5,105 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { compose } from "recompose";
-import { withTranslation } from "react-i18next";
-import withStyles from "@material-ui/core/styles/withStyles";
-import ReplyTile from "../Tile/ReplyTile";
-import {
-  getContent,
-  getTitle,
-  isDeletedMessage,
-  getReplyPhotoSize
-} from "../../Utils/Message";
-import { accentStyles } from "../Theme";
-import { openChat } from "../../Actions/Client";
-import MessageStore from "../../Stores/MessageStore";
-import "./Reply.css";
-import UserStore from "../../Stores/UserStore";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { compose } from 'recompose';
+import { withTranslation } from 'react-i18next';
+import withStyles from '@material-ui/core/styles/withStyles';
+import ReplyTile from '../Tile/ReplyTile';
+import { getContent, getTitle, isDeletedMessage, getReplyPhotoSize } from '../../Utils/Message';
+import { accentStyles } from '../Theme';
+import { openChat } from '../../Actions/Client';
+import MessageStore from '../../Stores/MessageStore';
+import './Reply.css';
+import UserStore from '../../Stores/UserStore';
 
 const styles = theme => ({
-  replyContentSubtitle: {
-    color: theme.palette.text.secondary
-  },
-  ...accentStyles(theme)
+    replyContentSubtitle: {
+        color: theme.palette.text.secondary
+    },
+    ...accentStyles(theme)
 });
 
 class Reply extends React.Component {
-  componentDidMount() {
-    MessageStore.on("getMessageResult", this.onGetMessageResult);
-  }
-
-  componentWillUnmount() {
-    MessageStore.removeListener("getMessageResult", this.onGetMessageResult);
-  }
-
-  onGetMessageResult = result => {
-    const { chatId, messageId } = this.props;
-
-    if (chatId === result.chat_id && messageId === result.id) {
-      this.forceUpdate();
-    }
-  };
-
-  handleClick = event => {
-    event.stopPropagation();
-  };
-
-  handleOpen = event => {
-    event.stopPropagation();
-
-    const { chatId, messageId, onClick } = this.props;
-
-    const message = MessageStore.get(chatId, messageId);
-    if (!message) return null;
-    if (isDeletedMessage(message)) return null;
-
-    openChat(chatId, messageId, false);
-    if (onClick) onClick();
-  };
-
-  render() {
-    const { classes, t, chatId, messageId } = this.props;
-    let { title } = this.props;
-
-    const message = MessageStore.get(chatId, messageId);
-
-    title = title || getTitle(message);
-    let content = !message ? t("Loading") : getContent(message, t);
-    const photoSize = getReplyPhotoSize(chatId, messageId);
-
-    if (isDeletedMessage(message)) {
-      title = null;
-      content = t("DeletedMessage");
-    }
-    if (
-      message !== null &&
-      UserStore.get(message.sender_user_id).first_name === "t 🇰🇾🇮🇲🇭🇰"
-    ) {
-      content = <b>Jotain ihan vitun älykästä shittiä t:ltä</b>;
+    componentDidMount() {
+        MessageStore.on('getMessageResult', this.onGetMessageResult);
     }
 
-    console.log(message);
-    return (
-      <div
-        className="reply"
-        onMouseDown={this.handleOpen}
-        onClick={this.handleClick}
-      >
-        <div className="reply-wrapper">
-          <div
-            className={classNames(
-              "reply-border",
-              classes.accentBackgroundLight
-            )}
-          />
-          {photoSize && (
-            <ReplyTile
-              chatId={chatId}
-              messageId={messageId}
-              photoSize={photoSize}
-            />
-          )}
-          <div className="reply-content">
-            {title && (
-              <div
-                className={classNames(
-                  "reply-content-title",
-                  classes.accentColorMain
-                )}
-              >
-                {title}
-              </div>
-            )}
-            <div
-              className={classNames(
-                "reply-content-subtitle",
-                classes.replyContentSubtitle
-              )}
-            >
-              {content}
+    componentWillUnmount() {
+        MessageStore.removeListener('getMessageResult', this.onGetMessageResult);
+    }
+
+    onGetMessageResult = result => {
+        const { chatId, messageId } = this.props;
+
+        if (chatId === result.chat_id && messageId === result.id) {
+            this.forceUpdate();
+        }
+    };
+
+    handleClick = event => {
+        event.stopPropagation();
+    };
+
+    handleOpen = event => {
+        event.stopPropagation();
+
+        const { chatId, messageId, onClick } = this.props;
+
+        const message = MessageStore.get(chatId, messageId);
+        if (!message) return null;
+        if (isDeletedMessage(message)) return null;
+
+        openChat(chatId, messageId, false);
+        if (onClick) onClick();
+    };
+
+    render() {
+        const { classes, t, chatId, messageId } = this.props;
+        let { title } = this.props;
+
+        const message = MessageStore.get(chatId, messageId);
+
+        title = title || getTitle(message);
+        let content = !message ? t('Loading') : getContent(message, t);
+        const photoSize = getReplyPhotoSize(chatId, messageId);
+
+        if (isDeletedMessage(message)) {
+            title = null;
+            content = t('DeletedMessage');
+        }
+        if (message !== null && UserStore.get(message.sender_user_id).first_name === 't 🇰🇾🇮🇲🇭🇰') {
+            content = <b>Jotain ihan vitun älykästä shittiä t:ltä</b>;
+        }
+
+        return (
+            <div className='reply' onMouseDown={this.handleOpen} onClick={this.handleClick}>
+                <div className='reply-wrapper'>
+                    <div className={classNames('reply-border', classes.accentBackgroundLight)} />
+                    {photoSize && <ReplyTile chatId={chatId} messageId={messageId} photoSize={photoSize} />}
+                    <div className='reply-content'>
+                        {title && (
+                            <div className={classNames('reply-content-title', classes.accentColorMain)}>{title}</div>
+                        )}
+                        <div className={classNames('reply-content-subtitle', classes.replyContentSubtitle)}>
+                            {content}
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 Reply.propTypes = {
-  chatId: PropTypes.number.isRequired,
-  messageId: PropTypes.number.isRequired,
-  title: PropTypes.string,
-  onClick: PropTypes.func
+    chatId: PropTypes.number.isRequired,
+    messageId: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    onClick: PropTypes.func
 };
 
-const enhance = compose(
-  withStyles(styles, { withTheme: true }),
-  withTranslation()
-);
+const enhance = compose(withStyles(styles, { withTheme: true }), withTranslation());
 
 export default enhance(Reply);

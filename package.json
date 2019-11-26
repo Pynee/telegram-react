@@ -1,12 +1,13 @@
 {
-  "homepage": "http://evgeny-nadymov.github.io/telegram-react",
+  "homepage": "./",
   "name": "telegram_react",
   "version": "0.0.508",
   "private": true,
   "dependencies": {
     "@capacitor/android": "^1.3.0",
-    "@capacitor/cli": "^1.3.0",
-    "@capacitor/core": "^1.3.0",
+    "@capacitor/core": "1.3.0",
+    "@ionic/react": "^4.11.5",
+    "@ionic/react-router": "^4.11.5",
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/lab": "^3.0.0-alpha.30",
@@ -54,9 +55,11 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "stats": "react-app-rewired build --bundle-report && npx webpack-bundle-analyzer ./build/bundle-stats.json"
+    "stats": "react-app-rewired build --bundle-report && npx webpack-bundle-analyzer ./build/bundle-stats.json",
+    "ionic:build": "npm run build && npx cap copy"
   },
   "devDependencies": {
+    "@capacitor/cli": "1.3.0",
     "customize-cra": "^0.5.0",
     "gh-pages": "^2.0.1",
     "husky": "^1.3.1",

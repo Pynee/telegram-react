@@ -1,4 +1,4 @@
-package app.gramion;
+package gramion.app;
 
 import android.os.Bundle;
 
